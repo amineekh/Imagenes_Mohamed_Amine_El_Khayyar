@@ -1,6 +1,9 @@
 package Convertir_Imagenes.Controlador;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
 
 public class Editor_imagenes {
     private JPanel Mainpanel;
@@ -40,4 +43,44 @@ public class Editor_imagenes {
     private JSlider slider1;
     private JLabel label_0;
     private JLabel label_100;
+
+    public Editor_imagenes() {
+        // ... (tu código actual)
+
+        // Agregar ActionListener al item_abrir
+        item_abrir.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                abrirImagen();
+            }
+        });
+    }
+
+    private void abrirImagen() {
+        JFileChooser fileChooser = new JFileChooser();
+
+        // Configurar el fileChooser para solo aceptar archivos de imagen
+        fileChooser.setFileFilter(new javax.swing.filechooser.FileFilter() {
+            public boolean accept(File f) {
+                return f.getName().toLowerCase().endsWith(".jpg") ||
+                        f.getName().toLowerCase().endsWith(".jpeg") ||
+                        f.getName().toLowerCase().endsWith(".png") ||
+                        f.isDirectory();
+            }
+
+            public String getDescription() {
+                return "Archivos de imagen (*.jpg, *.jpeg, *.png)";
+            }
+        });
+
+        int result = fileChooser.showOpenDialog(Mainpanel);
+
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = fileChooser.getSelectedFile();
+
+            // Mostrar la imagen en label_origen_img
+            ImageIcon imageIcon = new ImageIcon(selectedFile.getAbsolutePath());
+            label_origen_img.setIcon(imageIcon);
+        }
+    }
 }
