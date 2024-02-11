@@ -10,17 +10,6 @@ public class Editor_imagenes {
     private JMenuBar menubar;
     private JMenu menu_archivo;
 
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("Editor_imagenes");
-        frame.setContentPane(new Editor_imagenes().Mainpanel);
-
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        frame.pack();
-        frame.setVisible(true);
-        frame.setBounds(0,  0,  800, 600);
-    }
-
     private JMenuItem item_abrir;
     private JMenuItem item_guardar;
     private JMenuItem item_cerrar;
@@ -40,6 +29,8 @@ public class Editor_imagenes {
     private JPanel panel_parametros;
     private JPanel panel_titulo;
     private JLabel label_origen_img;
+    private JPanel panel_menu;
+    private JPanel panel_niveles;
     private JSlider slider1;
     private JLabel label_0;
     private JLabel label_100;
@@ -83,4 +74,16 @@ public class Editor_imagenes {
             label_origen_img.setIcon(imageIcon);
         }
     }
+
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("Editor_imagenes");
+        frame.setContentPane(new Editor_imagenes().Mainpanel);
+
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        frame.pack();
+        frame.setVisible(true);
+        frame.setBounds(0,  0,  800, 700);
+    }
+
 }
