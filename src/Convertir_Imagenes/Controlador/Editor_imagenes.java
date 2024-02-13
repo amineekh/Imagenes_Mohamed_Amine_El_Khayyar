@@ -30,14 +30,17 @@ public class Editor_imagenes {
     private JPanel panel_titulo;
     private JLabel label_origen_img;
     private JPanel panel_menu;
-    private JPanel panel_niveles;
+    private JScrollPane scroll_parametros;
+    private JPanel panel_nivel_scroll;
     private JSlider slider1;
-    private JLabel label_0;
-    private JLabel label_100;
+    private JSlider slider2;
+    private JSlider slider3;
+    private JSlider slider4;
+    private JSlider slider5;
+    private JSlider slider6;
+    private JSlider slider7;
 
     public Editor_imagenes() {
-        // ... (tu código actual)
-
         // Agregar ActionListener al item_abrir
         item_abrir.addActionListener(new ActionListener() {
             @Override
@@ -45,7 +48,77 @@ public class Editor_imagenes {
                 abrirImagen();
             }
         });
+
+        item_guardar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+
+
+        item_cerrar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+
+
+
+
+        boton_convertir.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+        item_blanco_negro.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+        item_grises.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+        item_Sepia.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+        item_altocontraste.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+        item_pixelada.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+        item_crearicono.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+        item_bajaresolucion.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+
+
     }
+
 
     private void abrirImagen() {
         JFileChooser fileChooser = new JFileChooser();
@@ -74,6 +147,10 @@ public class Editor_imagenes {
             label_origen_img.setIcon(imageIcon);
         }
     }
+
+
+
+
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("Editor_imagenes");
