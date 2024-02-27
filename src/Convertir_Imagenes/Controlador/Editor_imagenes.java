@@ -75,35 +75,53 @@ public class Editor_imagenes extends Component {
             }
         });
 
+        // Agregar un ActionListener al JMenuItem "item_guardar" para manejar la acción de guardar la imagen
         item_guardar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try{
+                try {
+                    // Obtener el ícono del JLabel "label_destino_img"
                     ImageIcon icon = (ImageIcon) label_destino_img.getIcon();
                     Image image = icon.getImage();
+
+                    // Crear una imagen BufferedImage para manipulación
                     BufferedImage bufferedImage = new BufferedImage(image.getWidth(null), image.getHeight(null), BufferedImage.TYPE_INT_RGB);
-                    Graphics2D g2d=bufferedImage.createGraphics();
+
+                    // Obtener un objeto Graphics2D para dibujar la imagen en el BufferedImage
+                    Graphics2D g2d = bufferedImage.createGraphics();
                     g2d.drawImage(image, 0, 0, null);
                     g2d.dispose();
+
+                    // Crear un JFileChooser para que el usuario elija la ubicación y el nombre del archivo
                     JFileChooser fileChooser = new JFileChooser();
                     int returnValue = fileChooser.showOpenDialog(null);
 
+                    // Verificar si el usuario ha seleccionado un archivo para guardar
                     if (returnValue == JFileChooser.APPROVE_OPTION) {
+                        // Mostrar un mensaje con la ruta completa del archivo seleccionado
                         JOptionPane.showMessageDialog(null, "Archivo seleccionado: " + fileChooser.getSelectedFile().getAbsolutePath());
                     }
-                    String ruta_a_guardar=fileChooser.getSelectedFile().getPath();
-                    File outputFile = new File(ruta_a_guardar);
-                    ImageIO.write(bufferedImage,"jpg",outputFile);
-                    JOptionPane.showMessageDialog(Editor_imagenes.this,"La imagen ha sido guardada con éxito.");
 
-                }catch (IOException ex){
+                    // Obtener la ruta del archivo seleccionado
+                    String ruta_a_guardar = fileChooser.getSelectedFile().getPath();
+
+                    // Crear un objeto File para representar el archivo de salida
+                    File outputFile = new File(ruta_a_guardar);
+
+                    // Escribir el BufferedImage en el archivo seleccionado en formato jpg
+                    ImageIO.write(bufferedImage, "jpg", outputFile);
+
+                    // Mostrar un mensaje indicando que la imagen ha sido guardada con éxito
+                    JOptionPane.showMessageDialog(Editor_imagenes.this, "La imagen ha sido guardada con éxito.");
+
+                } catch (IOException ex) {
+                    // Manejar una excepción en caso de fallo al guardar la imagen
                     ex.printStackTrace();
                     JOptionPane.showMessageDialog(Editor_imagenes.this, "Fallo al guardar la imagen");
-
-
                 }
             }
         });
+
 
 
         item_cerrar.addActionListener(new ActionListener() {
@@ -114,20 +132,29 @@ public class Editor_imagenes extends Component {
         });
 
 
+        // ActionListener para el efecto blanco y negro
         item_blanco_negro.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                // Definir la ruta de una imagen predefinida en blanco y negro
+                String ruta_img_blanco_negro = "src/Convertir_Imagenes/img/Costa_blanco_negro.jpg";
 
-                String ruta_img_blanco_negro= "src/Convertir_Imagenes/img/Costa_blanco_negro.jpg";
+                // Crear un ImageIcon a partir de la ruta de la imagen
                 ImageIcon img_icon = new ImageIcon(ruta_img_blanco_negro);
+
+                // Establecer el ImageIcon en el JLabel "label_destino_img" para mostrar la imagen de destino
                 label_destino_img.setIcon(img_icon);
+
+                // Ocultar el JLabel "label_destino_img"
                 label_destino_img.setVisible(false);
 
+                // Configurar la visibilidad de los parámetros y sliders específicos
                 label_parametro_1.setVisible(true);
                 slider1.setVisible(true);
                 label_1pr_0.setVisible(true);
                 label_1pr_100.setVisible(true);
 
+                // Ocultar otros parámetros y sliders
                 label_parametro_2.setVisible(false);
                 label_parametro_3.setVisible(false);
                 label_parametro_4.setVisible(false);
@@ -156,15 +183,16 @@ public class Editor_imagenes extends Component {
                 slider6.setVisible(false);
                 slider7.setVisible(false);
 
+                // Agregar un ActionListener al botón convertir para mostrar la imagen
                 boton_convertir.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         label_destino_img.setVisible(true);
                     }
                 });
-
             }
         });
+
 
 
         item_grises.addActionListener(new ActionListener() {
@@ -488,21 +516,30 @@ public class Editor_imagenes extends Component {
     }
 
 
+    // Método privado para abrir una imagen mediante JFileChooser
     private void abrirImagen() {
-
+        // Crear un JFileChooser para que el usuario seleccione un archivo de imagen
         JFileChooser fileChooser = new JFileChooser();
+
+        // Mostrar el diálogo de selección de archivo y obtener el resultado
         int returnValue = fileChooser.showOpenDialog(null);
 
+        // Verificar si el usuario ha seleccionado un archivo
         if (returnValue == JFileChooser.APPROVE_OPTION) {
-            JOptionPane.showMessageDialog(null, "Imagen seleccionado: " + fileChooser.getSelectedFile().getAbsolutePath());
+            // Mostrar un mensaje con la ruta completa del archivo seleccionado
+            JOptionPane.showMessageDialog(null, "Imagen seleccionada: " + fileChooser.getSelectedFile().getAbsolutePath());
         }
 
-        String path_img_origen=fileChooser.getSelectedFile().getPath();
+        // Obtener la ruta del archivo seleccionado
+        String path_img_origen = fileChooser.getSelectedFile().getPath();
+
+        // Crear un ImageIcon a partir de la ruta de la imagen
         ImageIcon icon = new ImageIcon(path_img_origen);
+
+        // Establecer el ImageIcon en el JLabel "label_origen_img" para mostrar la imagen de origen
         label_origen_img.setIcon(icon);
-
-
     }
+
 
 
 
